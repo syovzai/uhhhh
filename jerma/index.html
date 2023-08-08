@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <title>Rat Box</title>
+
+  <script src="a.js"></script>
+  <script src="b.js"></script>
+
+  <style>
+    #cont {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      color: rgb(0, 0, 0, 0);
+      z-index: 9999999;
+      display: block;
+      place-items: center;
+    }
+
+    .box {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    * {
+      margin:  0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+  </style>
+
+    <script>
+      AFRAME.registerComponent('markerhandler', {
+         init: function () {
+           this.el.addEventListener('markerFound', () => {
+             var check = this.el.getAttribute("url");
+              // alert(check);
+             document.getElementById('cont').style.display = "block";
+             document.getElementById('rats').play()
+           });
+       
+           this.el.addEventListener('markerLost', () => {
+            document.getElementById('cont').style.display = "none";
+            document.querySelector('audio').pause()
+           });
+         }
+       });
+    </script>
+
+  </head>
+
+  <body style="margin: 0px; overflow: hidden;">
+
+    <a-scene
+      vr-mode-ui="enabled: false;"
+      renderer="logarithmicDepthBuffer: true;"
+      embedded
+      arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
+
+      <a-nft
+      markerhandler
+        type="nft"
+        url="jerma/Jerma"
+        smooth="true"
+        smoothCount="100"
+        smoothTolerance=".1"
+        smoothThreshold="50">
+      </a-nft>
+
+      <a-entity camera></a-entity>
+    </a-scene>
+
+    <audio id="rats">
+      <source src="audio/weretherats.mp3" type="audio/mpeg">
+    </audio>
+  
+    <div id="cont">
+      <img class="box" src="img/ratbox.gif">
+    </div>
+
+  </body>
+</html>
