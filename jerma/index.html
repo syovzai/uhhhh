@@ -19,7 +19,7 @@
       height: 100vh;
       z-index: 9999999;
       display: block;
-      background-color: yellow;
+      background-color: rgba(0, 0, 0, 0);
     }
 
     * {
@@ -37,10 +37,12 @@
              var check = this.el.getAttribute("url");
              //alert('yes');
              document.getElementById('cont').style.top = "0";
+             document.getElementById('rats').play()
            });
        
            this.el.addEventListener('markerLost', () => {
             document.getElementById('cont').style.display = "none";
+            document.querySelector('audio').pause()
            });
          }
        });
@@ -69,9 +71,12 @@
       <a-entity camera></a-entity>
     </a-scene>
 
-  
+    <audio id="rats">
+      <source src="weretherats.mp3" type="audio/mpeg">
+    </audio>
+    
     <div id="cont">
-      hello
+      <img src="ratbox.gif">
     </div>
 
   </body>
