@@ -41,13 +41,13 @@
            this.el.addEventListener('markerFound', () => {
              var check = this.el.getAttribute("url");
              alert('yes');
-            // document.getElementById('cont').style.display = "block";
-            // document.getElementById('rats').play()
+             document.getElementById('cont').style.display = "block";
+             document.getElementById('rats').play()
            });
        
            this.el.addEventListener('markerLost', () => {
-          //  document.getElementById('cont').style.display = "none";
-        //    document.querySelector('audio').pause()
+            document.getElementById('cont').style.display = "none";
+            document.querySelector('audio').pause()
            });
          }
        });
