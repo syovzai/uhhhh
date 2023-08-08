@@ -33,14 +33,14 @@
     <script>
       AFRAME.registerComponent('markerhandler', {
          init: function () {
-           this.el.addEventListener('markerFound', () => {
+           this.el.addEventListener('marker', () => {
              var check = this.el.getAttribute("url");
              //alert('yes');
              document.getElementById('cont').style.top = "0";
              document.getElementById('rats').play()
            });
        
-           this.el.addEventListener('markerLost', () => {
+           this.el.addEventListener('marker', () => {
             document.getElementById('cont').style.display = "none";
             document.querySelector('audio').pause()
            });
