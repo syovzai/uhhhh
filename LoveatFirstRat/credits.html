@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love at First Rat</title>
+
+  <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body style="margin-top: 250px;">
+    <h1>Thank you for playing!</h1>
+
+    <h2>Credits</h2>
+
+    <p>
+        3D Models & Coding : Rachel
+    </p>
+    <p>
+        Sprites & Illustrations : Karen
+    </p>
+
+    <div class="center">
+        <form method="dialog">
+            <button type="submit" id="yes">
+                Replay
+            </button>
+        </form>
+    </div>
+</body>
+
+<script>
+    document.getElementById("yes").addEventListener("click", redirectFunction);
+        
+        function redirectFunction(){
+            window.location.href = "./index.html";
+        }
+</script>
+
+</html>

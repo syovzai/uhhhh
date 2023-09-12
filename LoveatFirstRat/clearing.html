@@ -1,0 +1,307 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love at First Rat</title>
+
+  <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+
+    <script>
+      AFRAME.registerComponent("collision", {
+        init: function() {
+          this.el.addEventListener("click", (e) => {
+            collision.showModal()
+          })
+        }
+      })
+    </script>
+
+  </head>
+  <body>
+    <a-scene>
+      <a-entity camera position="0 1.5 0" look-controls wasd-controls="acceleration: 12"> 
+        <a-cursor far="0.5"></a-cursor>
+      </a-entity>
+
+			<a-assets>
+        <a-asset-item id="clearing" src="assets/clearing.gltf"></a-asset-item>
+      </a-assets>
+
+			<a-entity gltf-model="#clearing">
+        <a-box id="collision" material="transparent: true; depthTest: true" 
+        opacity="0" 
+        position="0 0.5 -10.75" 
+        width="1.5"
+        depth="1.6"
+        height="1.5"
+        collision>
+      </a-box>
+    </a-entity>
+      
+      <a-entity light="type: hemisphere; color: #B5AEEF; groundColor: #231748; intensity: 1"></a-entity>
+      <a-entity light="type: point; intensity: 5; distance: 50; decay: 10"
+      position="0 0 -8"></a-entity>
+
+      <a-light type="directional" position="0 0 0" rotation="-90 0 0" color="#202643" target="#directionaltarget">
+        <a-entity id="directionaltarget" position="0 0 -100"></a-entity>
+    </a-scene>
+    
+    <dialog id="speech" class="popup" onclick="ch1()">
+      <div id="Rat_Neutral">
+        <img id="sprite" src="sprites/Rat_Neutral.png">
+      </div>
+      <p id="text">A... rat...?</p>
+      <div id="clicking" style="opacity: 0;">0</div>
+    </dialog>
+
+  </body>
+
+  <script>
+    const collision = document.querySelector('#speech');
+
+    function ch1() {
+      var clickno = document.getElementById('clicking').innerHTML;
+      clickno = parseFloat(clickno) + 1;
+      if (clickno == 1) {
+        document.getElementById('text').innerHTML = "You: What's a rat doing in the middle of the woods?";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if (clickno == 2) {
+        document.getElementById('text').innerHTML = "Rat: I could ask you the same";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 3) {
+        document.getElementById('text').innerHTML = "?!";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 4) {
+        document.getElementById('text').innerHTML = "...";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 5) {
+        document.getElementById('text').innerHTML = "You: It seems the exhaustion has gotten to me more than I realized.";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 6) {
+        document.getElementById('text').innerHTML = "You: Didn't think it'd reach the point to where I start to hallucinate...";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 7) {
+        document.getElementById('text').innerHTML = "You: Guess it's time for me to head home-";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 8) {
+        document.getElementById('text').innerHTML = "Rat: Wait, don't go!";
+        document.getElementById('sprite').src = "sprites/Rat_Sad.png";
+      } else if(clickno == 9) {
+        document.getElementById('text').innerHTML = "Rat: Please stay for a moment...";
+        document.getElementById('sprite').src = "sprites/Rat_Sad.png";
+      } else if(clickno == 10) {
+        document.getElementById('text').innerHTML = "You decided to stay";
+        document.getElementById('sprite').src = "sprites/Rat_Sad.png";
+      } else if(clickno == 11) {
+        document.getElementById('text').innerHTML = "Why? You have no idea";
+        document.getElementById('sprite').src = "sprites/Rat_Sad.png";
+      } else if(clickno == 12) {
+        document.getElementById('text').innerHTML = "You: Maybe I fell asleep and this is just one weird yet realistic dream...";
+        document.getElementById('sprite').src = "sprites/Rat_Sad.png";
+      } else if(clickno == 13) {
+        document.getElementById('text').innerHTML = "Rat: I can assure you this is no dream. Go and pinch yourself if you don't believe me.";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 14) {
+        document.getElementById('text').innerHTML = "You: So now that we've established I haven't lost my mind, what exactly are you?";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 15) {
+        document.getElementById('text').innerHTML = "Rat: I'm a rat of course!";
+        document.getElementById('sprite').src = "sprites/Rat_Happy.png";
+      } else if(clickno == 16) {
+        document.getElementById('text').innerHTML = "You: Last I checked rats can't speak like humans, much less be so fluent.";
+        document.getElementById('sprite').src = "sprites/Rat_Happy.png";
+      } else if(clickno == 17) {
+        document.getElementById('text').innerHTML = "Rat: That's because I'm no ordinary rat.";
+        document.getElementById('sprite').src = "sprites/Rat_Happy.png";
+      } else if(clickno == 18) {
+        document.getElementById('text').innerHTML = "Rat: I used to be a human actually, but because of unfortunate circumstances, it's left me in the form you see me in now.";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 19) {
+        document.getElementById('text').innerHTML = "You: ...";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 20) {
+        document.getElementById('text').innerHTML = "Rat: ...";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 21) {
+        document.getElementById('text').innerHTML = "You: ...I'm leaving-";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 22) {
+        document.getElementById('text').innerHTML = "Rat: No please!";
+        document.getElementById('sprite').src = "sprites/Rat_Sad.png";
+      } else if(clickno == 23) {
+        document.getElementById('text').innerHTML = "You: Why do you want me to stay so badly? If you're that lonely go and be with other rats.";
+        document.getElementById('sprite').src = "sprites/Rat_Sad.png";
+      } else if(clickno == 24) {
+        document.getElementById('text').innerHTML = "Rat: Because you have the potential to help me turn back into a human!";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 25) {
+        document.getElementById('text').innerHTML = "You: How could I help? It's not like I was the one who turned you into a rat.";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 26) {
+        document.getElementById('text').innerHTML = "Rat: I know, I know, but there's a condition on the curse that'll allow me to turn back into a human if achieved.";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 27) {
+        document.getElementById('text').innerHTML = "You: And that would be?";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 28) {
+        document.getElementById('text').innerHTML = "Rat: A kiss!";
+        document.getElementById('sprite').src = "sprites/Rat_Happy.png";
+      } else if(clickno == 29) {
+        document.getElementById('text').innerHTML = "...";
+        document.getElementById('sprite').src = "sprites/Rat_Happy.png";
+      } else if(clickno == 30) {
+        document.getElementById('text').innerHTML = "...";
+        document.getElementById('sprite').src = "sprites/Rat_Happy.png";
+      } else if(clickno == 31) {
+        document.getElementById('text').innerHTML = "...";
+        document.getElementById('sprite').src = "sprites/Rat_Happy.png";
+      } else if(clickno == 32) {
+        document.getElementById('text').innerHTML = "...You've go to be kidding-";
+        document.getElementById('sprite').src = "sprites/Rat_Happy.png";
+      } else if(clickno == 33) {
+        document.getElementById('text').innerHTML = "Rat: I wish I was.";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 34) {
+        document.getElementById('text').innerHTML = "Rat: So, will you help me?";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 35) {
+        document.getElementById('text').innerHTML = "You contemplated the idea.";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 36) {
+        document.getElementById('text').innerHTML = "You don't even know why you're considerding it in the first place, it's a wild rat!";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 37) {
+        document.getElementById('text').innerHTML = "You could contract so many diseases being in contact with one!";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 38) {
+        document.getElementById('text').innerHTML = "Why are you even continuing to talk with it?! For all you know you might've actually lost your mind and is now wandering in the forest hallucinating and talking to your self!";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 39) {
+        document.getElementById('text').innerHTML = "Rat: Hey, are you alright? You've been deep in though for a while now...";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 40) {
+        document.getElementById('text').innerHTML = "That seemed to have snapped you out of your minor crisis.";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 41) {
+        document.getElementById('text').innerHTML = "You looked over at the rat.";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 42) {
+        document.getElementById('text').innerHTML = "Rat: It's ok if you don't want to do it, I understand.";
+        document.getElementById('sprite').src = "sprites/Rat_Happy.png";
+      } else if(clickno == 43) {
+        document.getElementById('text').innerHTML = "You sighed";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 44) {
+        document.getElementById('text').innerHTML = "You: Y'know what? I'll do it, it's not like I have anything to lose.";
+        document.getElementById('sprite').src = "sprites/Rat_Neutral.png";
+      } else if(clickno == 45) {
+        document.getElementById('text').innerHTML = "Rat: Really?? Thank you so much!";
+        document.getElementById('sprite').src = "sprites/Rat_Happy.png";
+      } else if(clickno == 46) {
+        document.getElementById('text').innerHTML = "You move closer towards the rat and picked it up into your hands.";
+        document.getElementById('sprite').src = "sprites/Rat_Happy.png";
+      } else if(clickno == 47) {
+        document.getElementById('text').innerHTML = "You took a deep breath and closed your eyes.";
+        document.getElementById('sprite').src = "sprites/Rat_Happy.png";
+      } else if(clickno == 48) {
+        document.getElementById('text').innerHTML = "You brought the rat closer until you could feel it's nose against your lips";
+        document.getElementById('sprite').src = "sprites/Rat_Happy.png";
+      } else if(clickno == 49) {
+        document.getElementById('text').innerHTML = "...";
+      } else if(clickno == 50) {
+        document.getElementById('text').innerHTML = "For a moment, you no longer felt the rough sensation of the rat's nose.";
+      } else if(clickno == 51) {
+        document.getElementById('text').innerHTML = "You open your eyes.";
+      } else if(clickno == 52) {
+        document.getElementById('text').innerHTML = "A person now stands before you.";
+        document.getElementById('sprite').src = "sprites/Rat2_Neutral2.png";
+      } else if(clickno == 53) {
+        document.getElementById('text').innerHTML = "Rat(?): ...";
+        document.getElementById('sprite').src = "sprites/Rat2_Neutral.png";
+      } else if(clickno == 54) {
+        document.getElementById('text').innerHTML = "You stood there, baffled. You rubbed your eyes to make sure you really weren't hallucinating.";
+        document.getElementById('sprite').src = "sprites/Rat2_Neutral.png";
+      } else if(clickno == 55) {
+        document.getElementById('text').innerHTML = "Rat(?): Do you not like my appearance...?";
+        document.getElementById('sprite').src = "sprites/Rat2_Downcast.png";
+      } else if(clickno == 56) {
+        document.getElementById('text').innerHTML = "Their words seemed to snap you back to your senses";
+        document.getElementById('sprite').src = "sprites/Rat2_Downcast.png";
+      } else if(clickno == 57) {
+        document.getElementById('text').innerHTML = "You: No, not at all! The shock of what just happened just had me speechless is all.";
+        document.getElementById('sprite').src = "sprites/Rat2_Downcast.png";
+      } else if(clickno == 58) {
+        document.getElementById('text').innerHTML = "You: I just didn't think you'd look this pretty as a human.";
+        document.getElementById('sprite').src = "sprites/Rat2_Downcast.png";
+      } else if(clickno == 59) {
+        document.getElementById('text').innerHTML = "Rat(?): You think I'm pretty?";
+        document.getElementById('sprite').src = "sprites/Rat2_Neutral.png";
+      } else if(clickno == 60) {
+        document.getElementById('text').innerHTML = "You: Yeah?";
+        document.getElementById('sprite').src = "sprites/Rat2_Neutral.png";
+      } else if(clickno == 61) {
+        document.getElementById('text').innerHTML = "Rat(?): I'm flattered you think so.";
+        document.getElementById('sprite').src = "sprites/Rat2_Love.png";
+      } else if(clickno == 62) {
+        document.getElementById('text').innerHTML = "For a moment you both stood still staring at each other.";
+        document.getElementById('sprite').src = "sprites/Rat2_Neutral.png";
+      } else if(clickno == 63) {
+        document.getElementById('text').innerHTML = "You: So... now what?";
+        document.getElementById('sprite').src = "sprites/Rat2_Neutral.png";
+      } else if(clickno == 64) {
+        document.getElementById('text').innerHTML = "Rat(?): I don't know actually.";
+        document.getElementById('sprite').src = "sprites/Rat2_Downcast.png";
+      } else if(clickno == 65) {
+        document.getElementById('text').innerHTML = "Rat(?): I never thought what I'd do after becoming human again since I didn't think I'd ever turn back.";
+        document.getElementById('sprite').src = "sprites/Rat2_Downcast.png";
+      } else if(clickno == 66) {
+        document.getElementById('text').innerHTML = "You: How long have you been a rat for?";
+        document.getElementById('sprite').src = "sprites/Rat2_Downcast.png";
+      } else if(clickno == 67) {
+        document.getElementById('text').innerHTML = "Rat(?): I don't know...";
+        document.getElementById('sprite').src = "sprites/Rat2_Downcast.png";
+      } else if(clickno == 68) {
+        document.getElementById('text').innerHTML = "Rat(?): I just know that I spent a very long time wandering around.";
+        document.getElementById('sprite').src = "sprites/Rat2_Neutral2.png";
+      } else if(clickno == 69) {
+        document.getElementById('text').innerHTML = "You: Do you even remember your own name?";
+        document.getElementById('sprite').src = "sprites/Rat2_Neutral2.png";
+      } else if(clickno == 70) {
+        document.getElementById('text').innerHTML = "Rat(?): Now that I think about it...";
+        document.getElementById('sprite').src = "sprites/Rat2_Neutral2.png";
+      } else if(clickno == 71) {
+        document.getElementById('text').innerHTML = "Rat(?): I can't recall the last time I was referred to by my birth name.";
+        document.getElementById('sprite').src = "sprites/Rat2_Downcast.png";
+      } else if(clickno == 72) {
+        document.getElementById('text').innerHTML = "Rat(?): That doesn't matter though, I've long since abandoned my previous life so call me whatever you want!";
+        document.getElementById('sprite').src = "sprites/Rat2_Neutral.png";
+      } else if(clickno == 73) {
+        document.getElementById('text').innerHTML = "You: I'm assuming you don't have a place to stay either, right?";
+        document.getElementById('sprite').src = "sprites/Rat2_Neutral.png";
+      } else if(clickno == 74) {
+        document.getElementById('text').innerHTML = "Rat(?): Yes, that's true...";
+        document.getElementById('sprite').src = "sprites/Rat2_Downcast.png";
+      } else if(clickno == 75) {
+        document.getElementById('text').innerHTML = "You: Why don't you come live with me then?";
+        document.getElementById('sprite').src = "sprites/Rat2_Downcast.png";
+      } else if(clickno == 76) {
+        document.getElementById('text').innerHTML = "Rat(?): Really? You'd do that for me even though we just met?";
+        document.getElementById('sprite').src = "sprites/Rat2_Neutral.png";
+      } else if(clickno == 77) {
+        document.getElementById('text').innerHTML = "You: Well you weren't lying about the whole 'cursed to be a rat' thing and you don't seem like a bad person so I figured why not?";
+        document.getElementById('sprite').src = "sprites/Rat2_Neutral.png";
+      } else if(clickno == 78) {
+        document.getElementById('text').innerHTML = "You: Plus my guilty concious would never let me go on knowing I just left you to fend for yourself.";
+        document.getElementById('sprite').src = "sprites/Rat2_Neutral.png";
+      } else if(clickno == 79) {
+        location.replace("./goodend.html")
+      }
+      
+      document.getElementById('clicking').innerHTML = clickno;
+      
+    }
+
+  </script>
+</html>
