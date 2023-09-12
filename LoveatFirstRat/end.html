@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love at First Rat</title>
+
+  <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div>
+        <dialog id="replay" class="end1" open style="margin-top: 250px;">
+            <h2>"You decided to not risk encountering something dangerous and go back home"</h1>
+            <h3>Replay?</h2>
+            <form method="dialog">
+                <input type="button" value="Yes" onclick="msg1()">
+                <input type="button" value="No" onclick="msg2()">
+            </form>
+          </dialog>
+    </div>
+</body>
+
+<script>
+    function msg1() {
+  location.replace("./index.html");
+}
+
+    function msg2() {
+  location.replace("./credits.html");
+}
+</script>
+
+</html>
