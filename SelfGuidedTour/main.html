@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raffles Map</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: beige;
+        }
+
+        .container {
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba(0, 0, 0, 0);
+            position: fixed;
+        }
+
+        .video {
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+            padding: 0;
+            position: fixed;
+            bottom: 190px;
+        }
+
+        .video video {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .map img {
+            width: 45vw;
+            position: fixed;
+            left: 5px;
+            top: 310px;
+        }
+
+        .title {
+            font-size: 34px;
+            font-family: Helvetica, sans-serif;
+            font-weight: bold;
+            text-align: right;
+            position: fixed;
+            right: 10px;
+            top: 280px;
+        }
+
+        .title2 {
+            font-size: 34px;
+            font-family: Helvetica, sans-serif;
+            font-weight: bold;
+            text-align: right;
+            position: fixed;
+            right: 10px;
+            top: 285px;
+        }
+
+        .text {
+            padding: 0px;
+            margin: 0px;
+            line-height: 3px;
+            font-size: 14px;
+            font-family: Helvetica, sans-serif;
+            font-weight: 100;
+            position: fixed;
+            right: 7px;
+            top: 350px;
+            text-align: right;
+        }
+
+        .chat {
+            margin: 0px;
+            padding: 0px;
+            position: fixed;
+            bottom: 320px;
+            left: 280px;
+        }
+
+        .chat button {
+            padding: 0;
+            margin: 0;
+            position: fixed;
+        }
+
+        .popup {
+            background-color: white;
+            width: 250px;
+            height: 130px;
+            border-radius: 10px;
+            position: fixed;
+            top: 300px;
+            left: 50px;
+        }
+
+        .bg {
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.529);
+            z-index: 1;
+            position: fixed;
+        }
+
+        .poptext {
+            padding-top: 25px;
+            margin: 0px;
+            font-size: 20px;
+            font-family: Helvetica, sans-serif;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .poptext2 {
+            padding-top: 3px;
+            padding-right: 5px;
+            padding-left: 5px;
+            margin: 0px;
+            font-size: 16px;
+            font-family: Helvetica, sans-serif;
+            font-weight: 50;
+            text-align: center;
+        }
+
+        .button {
+            width: 100px;
+            height: 35px;
+            border-radius: 5px;
+            background-color: rgb(195, 195, 195);
+            margin-left: 70px;
+            margin-top: 10px;
+        }
+
+        .buttontext {
+            padding-top: 7px;
+            padding-right: 5px;
+            padding-left: 5px;
+            margin: 0px;
+            font-size: 16px;
+            font-family: Helvetica, sans-serif;
+            font-weight: 50;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body onload="getLocation()">
+    <div id="raffles" class="container">
+        <!-- <div class="video">
+            <video autoplay muted loop playsinline>
+                <source src="media/Sequence01.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="map">
+            <img src="media/fment.png">
+        </div>
+
+        <div class="title">
+            <p>Lobby</p>
+        </div>
+
+        <div class="text">
+            <p>When you enter the office</p>
+            <p>building you will see a set of</p>
+            <p>stairs next to the receptionist.</p>
+            <p>Those stairs lead to the 2nd</p>
+            <p>floor, where the Raffles</p>
+            <p>Institute of Design is located.</p>
+            <p>Behind the admin's desk is</p>
+            <p>the student's lounge, where</p>
+            <p>students congregate during</p>
+            <p>break to either eat or rest.</p>
+        </div>
+
+        <div class="desc">   
+            <button id="initiate" type="submit"
+            style="background-color: #f8d24c; border-radius: 50%; height: 50px; width: 50px;
+            position: fixed; top: 575px; right: 15px;
+            box-shadow:0 5px 16px 0 rgba(0,0,0,0.24), 0 5px 40px 0 rgba(0,0,0,0.19);"
+            onclick="location.href = 'chatbot.html'">
+            <img src="media/chat_button.png"style="aspect-ratio: 1:1; align-self: center; height:25px;">
+            </button>
+        </div> -->
+    </div>
+</body>
+<script>
+     function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }}
+
+function showPosition(position) {
+	var lat = parseFloat(position.coords.latitude);
+	var long = parseFloat(position.coords.longitude);
+
+	var entrance_lat = -6.189517;
+	var entrance_long = 106.8226637;
+
+	var classes_lat = -6.1895366;
+	var classes_long = 106.8226686;
+
+	var distance_arr = [
+	  getDistance(lat,long,entrance_lat,entrance_long),
+	  getDistance(lat,long,classes_lat,classes_long),
+	];
+
+	var xx = closest(distance_arr, 0);
+	if (xx == getDistance(lat,long,entrance_lat,entrance_long)) {
+		//var i = "lat:" + lat +"<br>long:" + long + "<br>" + 'entrance ' + getDistance(lat,long,entrance_lat,entrance_long);
+        var  i = '<div class="bg" id="notice"><div class="popup"><p class="poptext">Welcome to Raffles!</p><p class="poptext2">We hope you enjoy your stay!</p><div class="button" onclick="playMaxwell()"><p class="buttontext">Close</p></div></div></div><div class="video"><video id="max" loop playsinline><source src="media/Sequence01.mp4" type="video/mp4"></video></div><div class="map"><img src="media/fment.png"></div><div class="title"><p>Lobby</p></div><div class="text"><p>When you enter the office</p><p>building you will see a set of</p><p>stairs next to the receptionist.</p><p>Those stairs lead to the 2nd</p><p>floor, where the Raffles</p><p>Institute of Design is located.</p><p>Behind the admin desk is</p><p>the students lounge, where</p><p>students congregate during</p><p>break to either eat or rest.</p></div></div><div class="desc"><button id="initiate" type="submit"style="background-color: #f8d24c; border-radius: 50%; height: 50px; width: 50px;position: fixed; top: 575px; right: 15px;box-shadow:0 5px 16px 0 rgba(0,0,0,0.24), 0 5px 40px 0 rgba(0,0,0,0.19);"onclick="location.href = \'chatbot.html\'"><img src="media/chat_button.png"style="aspect-ratio: 1:1; align-self: center; height:25px;"></button></div><div class="back"><button id="initiate" type="submit"style="background-color: #f8d24c; border-radius: 50%; height: 50px; width: 50px;position: fixed; top: 575px; left: 230px;box-shadow:0 5px 16px 0 rgba(0,0,0,0.24), 0 5px 40px 0 rgba(0,0,0,0.19);"onclick="location.href = \'index.html\'"><img src="media/reply_button.png"style="aspect-ratio: 1:1; align-self: center; height:25px;"></button></div>';
+	} else if (xx == getDistance(lat,long,classes_lat,classes_long)) {
+		//var i = "lat:" + lat +"<br>long:" + long + "<br>" + 'classes ' + getDistance(lat,long,classes_lat,classes_long);
+        var  i = '<div class="bg" id="notice"><div class="popup"><p class="poptext">Welcome to Raffles!</p><p class="poptext2">We hope you enjoy your stay!</p><div class="button" onclick="playJustKen()"><p class="buttontext">Close</p></div></div></div><div class="video"><video id="ken" loop playsinline><source src="media/Sequence02.mp4" type="video/mp4"></video></div><div class="map"><img src="media/fmcls.png"></div><div class="title2"><p>Classrooms</p></div><div class="text"><p>This area deeper in the</p><p>campus is where classes</p><p>take place. The area</p><p>comprises the Mac Lab,</p><p>PC Lab, Fashion Workshops,</p><p>Central Study Area as well as</p><p>the Library. These locaions</p><p>are fully equipped with</p><p>facilities to help students</p><p>further their education.</p></div></div><div class="desc"><button id="initiate" type="submit"style="background-color: #f8d24c; border-radius: 50%; height: 50px; width: 50px;position: fixed; top: 575px; right: 15px;box-shadow:0 5px 16px 0 rgba(0,0,0,0.24), 0 5px 40px 0 rgba(0,0,0,0.19);"onclick="location.href = \'chatbot.html\'"><img src="media/chat_button.png"style="aspect-ratio: 1:1; align-self: center; height:25px;"></button></div><div class="back"><button id="initiate" type="submit"style="background-color: #f8d24c; border-radius: 50%; height: 50px; width: 50px;position: fixed; top: 575px; left: 230px;box-shadow:0 5px 16px 0 rgba(0,0,0,0.24), 0 5px 40px 0 rgba(0,0,0,0.19);"onclick="location.href = \'index.html\'"><img src="media/reply_button.png"style="aspect-ratio: 1:1; align-self: center; height:25px;"></button></div>';
+	}
+	
+
+	document.getElementById('raffles').innerHTML = i;
+}
+
+function closest(array, num) {
+  var i = 0;
+  var minDiff = 1000;
+  var ans;
+  for (i in array) {
+    var m = Math.abs(num - array[i]);
+    if (m < minDiff) {
+      minDiff = m;
+      ans = array[i];
+    }
+  }
+  return ans;
+}
+
+function getDistance(lat1,lon1,lat2,lon2) {
+  var R = 6371000; // Radius of the earth in km
+  var dLat = deg2rad(lat2-lat1);  // deg2rad below
+  var dLon = deg2rad(lon2-lon1); 
+  var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ; 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c; // Distance in km
+  return d;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
+
+function playJustKen(){
+       document.getElementById("ken").play();
+       document.getElementById("notice").style.display = "none";
+     }
+
+function playMaxwell(){
+       document.getElementById("max").play();
+       document.getElementById("notice").style.display = "none";
+     }
+</script>
+</html>
